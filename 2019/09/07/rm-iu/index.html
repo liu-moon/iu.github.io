@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/iu.github.io/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/iu.github.io/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/iu.github.io/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/iu.github.io/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/iu.github.io/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/iu.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/iu.github.io/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    save_scroll: false,
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="Note:  实验室正式肝代码的第一天 robomater还是很喜欢你 本博客将持续更新rm电控相关进程 后续会添加留言功能 希望志同道合的朋友加入 本人能力有限 若有错误之处 欢迎指出 不喜勿喷 感激不尽  今天先把工程框架搭建起来再记录一个点亮led的工程 顺便复习一下cubemx的使用 话不多说 现在开始 首先打开cubemx软件 点击File下拉菜单下的New Project 在搜索栏输入">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rm_iu">
+<meta property="og:url" content="https://liu-moon.github.io/iu.github.io/2019/09/07/rm-iu/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Note:  实验室正式肝代码的第一天 robomater还是很喜欢你 本博客将持续更新rm电控相关进程 后续会添加留言功能 希望志同道合的朋友加入 本人能力有限 若有错误之处 欢迎指出 不喜勿喷 感激不尽  今天先把工程框架搭建起来再记录一个点亮led的工程 顺便复习一下cubemx的使用 话不多说 现在开始 首先打开cubemx软件 点击File下拉菜单下的New Project 在搜索栏输入">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/07/nl1yl9.md.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/07/nlNSpT.md.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/07/nlNFB9.md.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/07/nlaZQO.md.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/07/nldEAs.md.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/07/nldwuD.md.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/07/nld2gf.md.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/07/nl0CwQ.md.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/07/nl0MTJ.md.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/07/nl04ts.md.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/07/nlD6eS.md.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/07/nlsUgI.md.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/07/nlshrV.md.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/07/nlymdS.md.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/07/nly6eK.md.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/07/nl6T39.md.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/07/nlc9gA.md.jpg">
+<meta property="og:updated_time" content="2019-09-07T06:45:34.470Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="rm_iu">
+<meta name="twitter:description" content="Note:  实验室正式肝代码的第一天 robomater还是很喜欢你 本博客将持续更新rm电控相关进程 后续会添加留言功能 希望志同道合的朋友加入 本人能力有限 若有错误之处 欢迎指出 不喜勿喷 感激不尽  今天先把工程框架搭建起来再记录一个点亮led的工程 顺便复习一下cubemx的使用 话不多说 现在开始 首先打开cubemx软件 点击File下拉菜单下的New Project 在搜索栏输入">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/09/07/nl1yl9.md.png">
+  <link rel="canonical" href="https://liu-moon.github.io/iu.github.io/2019/09/07/rm-iu/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>rm_iu | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/iu.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/iu.github.io/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/iu.github.io/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liu-moon.github.io/iu.github.io/iu.github.io/2019/09/07/rm-iu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/iu.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">rm_iu
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-09-07 13:24:00 / Modified: 14:45:34" itemprop="dateCreated datePublished" datetime="2019-09-07T13:24:00+08:00">2019-09-07</time>
+            </span>
+          
+            
+
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Note:</p>
+<ul>
+<li>实验室正式肝代码的第一天</li>
+<li>robomater还是很喜欢你</li>
+<li>本博客将持续更新rm电控相关进程 后续会添加留言功能 希望志同道合的朋友加入</li>
+<li>本人能力有限 若有错误之处 欢迎指出 不喜勿喷 感激不尽</li>
+</ul>
+<p>今天先把工程框架搭建起来再记录一个点亮led的工程 顺便复习一下cubemx的使用 话不多说 现在开始</p>
+<h4 id="首先打开cubemx软件"><a href="#首先打开cubemx软件" class="headerlink" title="首先打开cubemx软件"></a>首先打开cubemx软件</h4><p><a href="https://imgchr.com/i/nl1yl9" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/09/07/nl1yl9.md.png" alt="nl1yl9.md.png"></a></p>
+<h4 id="点击File下拉菜单下的New-Project"><a href="#点击File下拉菜单下的New-Project" class="headerlink" title="点击File下拉菜单下的New Project"></a>点击File下拉菜单下的New Project</h4><p><a href="https://imgchr.com/i/nlNSpT" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/09/07/nlNSpT.md.png" alt="nlNSpT.md.png"></a></p>
+<h4 id="在搜索栏输入427ii后选择STM32F427IIHx"><a href="#在搜索栏输入427ii后选择STM32F427IIHx" class="headerlink" title="在搜索栏输入427ii后选择STM32F427IIHx"></a>在搜索栏输入427ii后选择<em>STM32F427IIHx</em></h4><p><a href="https://imgchr.com/i/nlNFB9" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/09/07/nlNFB9.md.png" alt="nlNFB9.md.png"></a></p>
+<h4 id="选择System-Core中的RCC-Double-click-选择HSE中的Crystal-Ceramic-Resonator-晶体-陶瓷谐振器"><a href="#选择System-Core中的RCC-Double-click-选择HSE中的Crystal-Ceramic-Resonator-晶体-陶瓷谐振器" class="headerlink" title="选择System Core中的RCC(Double-click) 选择HSE中的Crystal/Ceramic Resonator(晶体/陶瓷谐振器)"></a>选择System Core中的RCC(Double-click) 选择HSE中的Crystal/Ceramic Resonator(晶体/陶瓷谐振器)</h4><p><a href="https://imgchr.com/i/nlaZQO" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/09/07/nlaZQO.md.png" alt="nlaZQO.md.png"></a></p>
+<h4 id="接下来配置时钟树-选择Clock-Configuration"><a href="#接下来配置时钟树-选择Clock-Configuration" class="headerlink" title="接下来配置时钟树 选择Clock Configuration"></a>接下来配置时钟树 选择Clock Configuration</h4><p><a href="https://imgchr.com/i/nldEAs" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/09/07/nldEAs.md.png" alt="nldEAs.md.png"></a></p>
+<h4 id="如图进行相关配置"><a href="#如图进行相关配置" class="headerlink" title="如图进行相关配置"></a>如图进行相关配置</h4><p><a href="https://imgchr.com/i/nldwuD" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/09/07/nldwuD.md.png" alt="nldwuD.md.png"></a></p>
+<h4 id="查看Robomaster开发板A型原理图后得知"><a href="#查看Robomaster开发板A型原理图后得知" class="headerlink" title="查看Robomaster开发板A型原理图后得知"></a>查看Robomaster开发板A型原理图后得知</h4><p><a href="https://imgchr.com/i/nld2gf" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/09/07/nld2gf.md.png" alt="nld2gf.md.png"></a></p>
+<p>开发板的8个led分别连接在PG1-PG8引脚上</p>
+<h4 id="回到Pinout-amp-Configuration中继续配置gpio"><a href="#回到Pinout-amp-Configuration中继续配置gpio" class="headerlink" title="回到Pinout&amp;Configuration中继续配置gpio"></a>回到Pinout&amp;Configuration中继续配置gpio</h4><p><a href="https://imgchr.com/i/nl0CwQ" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/09/07/nl0CwQ.md.png" alt="nl0CwQ.md.png"></a><br>搜索栏直接输入引脚搜索</p>
+<p>点击对应引脚配置其为GPIO_Output模式<br><a href="https://imgchr.com/i/nl0MTJ" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/09/07/nl0MTJ.md.png" alt="nl0MTJ.md.png"></a><br>同理配置另外7个引脚</p>
+<p>配置完成后如图<br><a href="https://imgchr.com/i/nl04ts" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/09/07/nl04ts.md.png" alt="nl04ts.md.png"></a></p>
+<h4 id="配置完成后-我们查看一下gpio配置-这里我们暂不更改-直接使用默认配置即可"><a href="#配置完成后-我们查看一下gpio配置-这里我们暂不更改-直接使用默认配置即可" class="headerlink" title="配置完成后 我们查看一下gpio配置 这里我们暂不更改 直接使用默认配置即可"></a>配置完成后 我们查看一下gpio配置 这里我们暂不更改 直接使用默认配置即可</h4><p><a href="https://imgchr.com/i/nlD6eS" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/09/07/nlD6eS.md.png" alt="nlD6eS.md.png"></a></p>
+<h4 id="一切配置完成后-我们生成代码"><a href="#一切配置完成后-我们生成代码" class="headerlink" title="一切配置完成后 我们生成代码"></a>一切配置完成后 我们生成代码</h4><p><a href="https://imgchr.com/i/nlsUgI" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/09/07/nlsUgI.md.png" alt="nlsUgI.md.png"></a><br>自定义名称、路径、和编译工具<br><a href="https://imgchr.com/i/nlshrV" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/09/07/nlshrV.md.png" alt="nlshrV.md.png"></a><br>这里选择为每个部分生成独立的.c与.h文件 方便以后的管理<br><a href="https://imgchr.com/i/nlymdS" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/09/07/nlymdS.md.png" alt="nlymdS.md.png"></a><br>最后点击GENERATE CODE生成代码<br><a href="https://imgchr.com/i/nly6eK" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/09/07/nly6eK.md.png" alt="nly6eK.md.png"></a><br>等待完成打开工程<br><a href="https://imgchr.com/i/nl6T39" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/09/07/nl6T39.md.png" alt="nl6T39.md.png"></a><br>编译运行后 0 error 0 waring</p>
+<h4 id="将程序烧录到开发板"><a href="#将程序烧录到开发板" class="headerlink" title="将程序烧录到开发板"></a>将程序烧录到开发板</h4><p><a href="https://imgchr.com/i/nlc9gA" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/09/07/nlc9gA.md.jpg" alt="nlc9gA.md.jpg"></a><br>按下开发板reset键后 led灯成功点亮</p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/iu.github.io/2019/09/05/RM/" rel="next" title="RM">
+                  <i class="fa fa-chevron-left"></i> RM
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/iu.github.io/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#首先打开cubemx软件"><span class="nav-number">1.</span> <span class="nav-text">首先打开cubemx软件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#点击File下拉菜单下的New-Project"><span class="nav-number">2.</span> <span class="nav-text">点击File下拉菜单下的New Project</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在搜索栏输入427ii后选择STM32F427IIHx"><span class="nav-number">3.</span> <span class="nav-text">在搜索栏输入427ii后选择STM32F427IIHx</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#选择System-Core中的RCC-Double-click-选择HSE中的Crystal-Ceramic-Resonator-晶体-陶瓷谐振器"><span class="nav-number">4.</span> <span class="nav-text">选择System Core中的RCC(Double-click) 选择HSE中的Crystal/Ceramic Resonator(晶体/陶瓷谐振器)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#接下来配置时钟树-选择Clock-Configuration"><span class="nav-number">5.</span> <span class="nav-text">接下来配置时钟树 选择Clock Configuration</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如图进行相关配置"><span class="nav-number">6.</span> <span class="nav-text">如图进行相关配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看Robomaster开发板A型原理图后得知"><span class="nav-number">7.</span> <span class="nav-text">查看Robomaster开发板A型原理图后得知</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#回到Pinout-amp-Configuration中继续配置gpio"><span class="nav-number">8.</span> <span class="nav-text">回到Pinout&amp;Configuration中继续配置gpio</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置完成后-我们查看一下gpio配置-这里我们暂不更改-直接使用默认配置即可"><span class="nav-number">9.</span> <span class="nav-text">配置完成后 我们查看一下gpio配置 这里我们暂不更改 直接使用默认配置即可</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一切配置完成后-我们生成代码"><span class="nav-number">10.</span> <span class="nav-text">一切配置完成后 我们生成代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将程序烧录到开发板"><span class="nav-number">11.</span> <span class="nav-text">将程序烧录到开发板</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/iu.github.io/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/iu.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/iu.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/iu.github.io/js/utils.js?v=7.3.0"></script>
+  <script src="/iu.github.io/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/iu.github.io/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/iu.github.io/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/iu.github.io/js/scrollspy.js?v=7.3.0"></script>
+<script src="/iu.github.io/js/post-details.js?v=7.3.0"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>
