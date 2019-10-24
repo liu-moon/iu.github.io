@@ -308,7 +308,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-09-28 13:01:17" itemprop="dateModified" datetime="2019-09-28T13:01:17+08:00">2019-09-28</time>
+                <time title="Modified: 2019-10-24 09:04:14" itemprop="dateModified" datetime="2019-10-24T09:04:14+08:00">2019-10-24</time>
               </span>
             
           
@@ -454,6 +454,15 @@
 <li>17mm的发弹机构如果可能放在工程上就等于了一个特别血量厚的步兵，抗揍还有输出</li>
 <li>哨兵做个架子要装甲</li>
 </ul>
+<h3 id="10-24-麦克纳姆方程"><a href="#10-24-麦克纳姆方程" class="headerlink" title="10-24 麦克纳姆方程"></a>10-24 麦克纳姆方程</h3><h4 id="四轮麦克纳姆车的运动学分析"><a href="#四轮麦克纳姆车的运动学分析" class="headerlink" title="四轮麦克纳姆车的运动学分析"></a>四轮麦克纳姆车的运动学分析</h4><p>本文提出了四轮麦克纳姆汽车逆运动学问题和正向运动学问题的解决方案。<br>逆运动学方程式使您可以计算产生期望的车辆速度和旋转所需的四个独立的车轮角速度。<br>给定四轮角速度，正向运动学方程式可预测车辆运动。</p>
+<h4 id="Definitions"><a href="#Definitions" class="headerlink" title="Definitions"></a>Definitions</h4><p>参见下面的图</p>
+<p>在车辆上定义一个顶视图坐标系，其原点与四个车轮等距，并且X轴指向前方，Y轴指向左侧</p>
+<p>令[V]为3x1矩阵[Vx Vy ωv]’，该矩阵表示车辆在瞬间的期望平移和旋转速度<br>ωv逆时针为正</p>
+<p><a href="https://imgchr.com/i/KNVNJx" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/10/24/KNVNJx.md.png" alt="KNVNJx.md.png"></a></p>
+<p>从前端口轮开始，逆时针方向（从上方观察）对4个车轮1、2、3、4进行编号<br>令（Xn，Yn）为第n个车轮中心的坐标<br>令n为wheel_n的麦克纳姆轮与地板接触的轴线与X轴成的逆时针角度<br>假设所有四个轮子都平行于X轴<br>令每个车轮的半径为r</p>
+<h4 id="逆运动学"><a href="#逆运动学" class="headerlink" title="逆运动学"></a>逆运动学</h4><p>运动学上的逆问题是找到4x1矩阵<br>$[Ω] = [ω1ω2ω3ω4]’$<br>该矩阵代表产生所需[V]的4个麦克纳姆轮的旋转速度。</p>
+<p>换句话说，我们正在寻找一个4x3矩阵[R]，使得<br>$[Ω] =（1/r)[R][V]$ 公式(1)<br>[R]允许我们给定[V]进而计算[Ω]</p>
+<h5 id="步骤如下"><a href="#步骤如下" class="headerlink" title="步骤如下"></a>步骤如下</h5><p>假设车辆是刚体，则在每个车轮中心处都存在Vx和Vy车辆平移速度分量<br>每个车轮还具有一个附加的X和Y速度分量，这是因为</p>
 
           
         
